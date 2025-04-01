@@ -1,5 +1,5 @@
 # judas_strategy_engine.py
-# Sacred Multi-Asset Strategy Engine v2.0 ✨
+# Sacred Multi-Asset Strategy Engine v2.1 ✨ (AI-Aware + Safe AI Fallback)
 
 import pandas as pd
 import os
@@ -8,9 +8,10 @@ from datetime import datetime
 from pathlib import Path
 
 # Sacred Import Hooks
-from modules.utils import load_historical_prices, clean_price_data
+from modules.utils import clean_price_data
 from modules.assets import detect_market_type
 from modules.scoring import score_strategy_stock, score_strategy_forex, score_strategy_crypto
+from modules.ai_predictor import predict_stock_signal
 from sacred_logger import log_event
 
 # Load data
@@ -29,14 +30,25 @@ allocations = {}
 
 def get_strategy_score(symbol, df_symbol):
     market_type = detect_market_type(symbol)
+
     if market_type == "stock":
+        try:
+            ai_score = predict_stock_signal(df_symbol)
+            if ai_score is not None:
+                log_event("strategy", f"🧠 AI score for {symbol}: {ai_score}")
+                return ai_score
+        except Exception as e:
+            log_event("strategy", f"⚠️ AI score failed for {symbol}: {e}")
+
         return score_strategy_stock(df_symbol)
+
     elif market_type == "forex":
         return score_strategy_forex(df_symbol)
+
     elif market_type == "crypto":
         return score_strategy_crypto(df_symbol)
-    else:
-        return None
+
+    return None
 
 # Evaluate each symbol
 for symbol in symbols:
