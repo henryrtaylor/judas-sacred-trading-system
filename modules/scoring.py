@@ -1,8 +1,26 @@
 # modules/scoring.py
+import pandas as pd
 
 import numpy as np
 
-def score_strategy_stock(df):
+def score_strategy_stock(df: pd.DataFrame) -> float:
+    df = df.copy()
+
+    # Ensure close is numeric
+    df["close"] = pd.to_numeric(df["close"], errors="coerce")
+    df = df.dropna(subset=["close"])
+
+    if len(df) < 7:
+        return None  # Not enough clean data for MA
+
+    df["ma_3"] = df["close"].rolling(window=3).mean()
+    df["ma_7"] = df["close"].rolling(window=7).mean()
+
+    if df["ma_3"].iloc[-1] > df["ma_7"].iloc[-1]:
+        return 1.0
+    else:
+        return 0.3
+
     """
     Score stock based on simple momentum and SMA crossover.
     """

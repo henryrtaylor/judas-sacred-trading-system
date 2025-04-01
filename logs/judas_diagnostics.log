@@ -69,4 +69,5 @@
     "status": "error",
     "error": "After cleaning, not enough valid price rows."
   }
-]
+][2025-04-01 09:48:05] [STRATEGY] ⚠️ Skipping nan: not enough data
+[2025-04-01 09:48:05] [STRATEGY] ✅ Multi-Asset Strategy complete. Allocated: ['QQQ']
