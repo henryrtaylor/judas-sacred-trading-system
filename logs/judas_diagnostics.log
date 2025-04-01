@@ -1,0 +1,72 @@
+[
+  {
+    "symbol": "QQQ",
+    "status": "scored",
+    "rows": 60
+  },
+  {
+    "symbol": "IMMR",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "LWAY",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "NVDA",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "BSX",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "FTNT",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "SCHD",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "RMBI",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "BFIN",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "SOXX",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "JEPI",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "T",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "VZ",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  },
+  {
+    "symbol": "PCG",
+    "status": "error",
+    "error": "After cleaning, not enough valid price rows."
+  }
+]

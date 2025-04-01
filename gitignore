@@ -1,0 +1,24 @@
+# Virtual environments
+venv/
+.env/
+
+# Logs and runtime outputs
+logs/
+*.log
+*.csv
+*.json
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+*.bak
+*.swp
+.idea/
+.vscode/
+*.tmp

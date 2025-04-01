@@ -1,0 +1,39 @@
+
+[2025-03-31 08:27:08.230781] Practice run summary:
+
+[2025-03-31 09:01:31.036991] Judas Practice Summary:
+
+[2025-03-31 09:12:21.724646] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 09:33:13.043678] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 09:33:36.532865] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 09:42:55.257670] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 09:51:33.502845] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 10:00:48.550281] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
+
+[2025-03-31 10:11:15.760808] Judas Practice Summary:
+ - 🧠 strategy: ❌
+ - 🔮 simulate: ❌
+ - ⚖️ execute: ❌
