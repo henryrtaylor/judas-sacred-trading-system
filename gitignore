@@ -2,23 +2,25 @@
 venv/
 .env/
 
-# Logs and runtime outputs
+# Log files and generated data
 logs/
 *.log
 *.csv
 *.json
+*.db
 
-# Python bytecode
+# Compiled files and caches
 __pycache__/
 *.pyc
 
-# OS files
+# System and IDE files
 .DS_Store
 Thumbs.db
-
-# IDE/editor settings
 *.bak
-*.swp
+*.tmp
 .idea/
 .vscode/
-*.tmp
+
+# OpenAI keys or secrets
+openai_key.txt
+*.key
