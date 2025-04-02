@@ -1,72 +1,71 @@
-"""
-🔮 Judas Simulate Rebalance 🔮
-Simulates reallocation based on strategy engine output and current portfolio snapshot.
-Handles sacred numbers, errors, and intention.
-"""
-
-import sys
-import io
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+# judas_simulate_rebalance.py
+# 📈 Judas Sacred Rebalance Simulator with Reinforcement Upgrade
 
 import pandas as pd
 import json
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 
-# 📁 Paths
-portfolio_file = Path("logs/portfolio_snapshot.csv")
-goals_file = Path("generated/generated_goals.json")
-log_file = Path("logs/judas_simulation_log.json")
+# Load sacred allocation
+with open("generated/generated_goals.json") as f:
+    goals = json.load(f)
 
-# 📦 Load portfolio
+# Load fallback portfolio
 try:
-    portfolio = pd.read_csv(portfolio_file)
-    portfolio.columns = [c.strip() for c in portfolio.columns]
-    portfolio = portfolio.rename(columns={"est_value": "marketValue"})  # ensure uniformity
-except Exception as e:
-    print(f"❌ Failed to load portfolio: {e}")
-    exit(1)
+    with open("logs/portfolio_snapshot.json") as f:
+        portfolio = json.load(f)
+except FileNotFoundError:
+    print("⚠️ No portfolio snapshot found. Using dummy fallback portfolio.")
+    portfolio = {
+        "QQQ": {"qty": 10, "est_value": 1400.00},
+        "CASH": {"qty": 0, "est_value": 100.00}
+    }
 
-# 💼 Calculate portfolio value
-if "marketValue" not in portfolio.columns:
-    print("❌ 'marketValue' column missing in portfolio.")
-    exit(1)
+# Load prices
+df_prices = pd.read_csv("logs/historical_prices.csv")
+df_prices = df_prices[df_prices['symbol'].isin(goals.keys())]
+latest_prices = df_prices.groupby("symbol")['close'].last().to_dict()
 
-total_value = portfolio["marketValue"].sum()
-print(f"\n🧪 Judas Simulation Summary\n💼 Portfolio Value: ${total_value:,.2f}")
+# Simulate rebalanced portfolio
+portfolio_value = sum(v['est_value'] for v in portfolio.values())
+rebalanced_portfolio = {}
 
-# 🎯 Load strategy allocation
-try:
-    with open(goals_file, "r", encoding="utf-8") as f:
-        target_alloc = json.load(f)
-except Exception as e:
-    print(f"❌ Failed to load strategy output: {e}")
-    exit(1)
+for symbol, pct in goals.items():
+    price = latest_prices.get(symbol)
+    if price is None or price == 0:
+        continue
+    alloc_dollars = pct * portfolio_value
+    shares = round(alloc_dollars / price, 2)
+    rebalanced_portfolio[symbol] = {
+        "shares": shares,
+        "price": price,
+        "alloc_dollars": round(alloc_dollars, 2)
+    }
 
-# 🧾 Simulate Rebalance
-simulated_orders = []
-for symbol, target_pct in target_alloc.items():
-    allocation_dollars = total_value * (target_pct / 100)
-    simulated_orders.append({
-        "symbol": symbol,
-        "target_pct": target_pct,
-        "allocation": round(allocation_dollars, 2)
-    })
+# Calculate estimated performance
+estimated_value = sum(v['shares'] * v['price'] for v in rebalanced_portfolio.values())
+change_pct = ((estimated_value - portfolio_value) / portfolio_value) * 100
 
-print("\n🧾 Rebalancing Orders:")
-for order in simulated_orders:
-    print(f"➡️ BUY  ${order['allocation']:,.2f} of {order['symbol']}")
-
-# 📜 Save to log
-log_file.parent.mkdir(exist_ok=True)
-log_entry = {
+# Log simulation
+Path("logs").mkdir(exist_ok=True)
+sim_log = {
     "timestamp": datetime.now().isoformat(),
-    "portfolio_value": total_value,
-    "orders": simulated_orders
+    "initial_value": round(portfolio_value, 2),
+    "simulated_value": round(estimated_value, 2),
+    "change_pct": round(change_pct, 2),
+    "allocations": goals
 }
 
-with open(log_file, "a", encoding="utf-8") as f:
-    f.write(json.dumps(log_entry) + "\n")
+with open("logs/judas_simulation_log.json", "w") as f:
+    json.dump(sim_log, f, indent=4)
 
-print(f"\n✅ Simulation saved to {log_file}")
+print("\n🔮 Judas Reinforced Simulation Summary")
+print("----------------------------------------")
+print(f"💼 Portfolio Value: ${portfolio_value:,.2f}")
+print(f"📈 Simulated Value: ${estimated_value:,.2f}")
+print(f"📊 Change: {change_pct:+.2f}%")
+print("\n🧾 Rebalanced Holdings:")
+for sym, data in rebalanced_portfolio.items():
+    print(f"➡️  {sym}: {data['shares']} x ${data['price']:.2f} = ${data['alloc_dollars']:.2f}")
+
+print("\n✅ Simulation saved to logs/judas_simulation_log.json")

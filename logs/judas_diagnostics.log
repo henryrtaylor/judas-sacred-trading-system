@@ -80,3 +80,5 @@
 [2025-04-01 11:20:35] [AI] ❌ No valid feature rows to train AI on
 [2025-04-01 11:20:35] [STRATEGY] ⚠️ Skipping nan: not enough data
 [2025-04-01 11:20:35] [STRATEGY] ✅ Multi-Asset Strategy complete. Allocated: ['QQQ']
+[2025-04-01 17:59:16] [REINFORCE] ❌ No memory file found. Skipping RL update.
+[2025-04-01 18:30:11] [TRAINER] ✅ Reinforcement weights saved: {}

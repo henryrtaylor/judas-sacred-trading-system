@@ -1,5 +1,5 @@
 # judas_strategy_engine.py
-# Sacred Multi-Asset Strategy Engine v2.1 ✨ (AI-Aware + Safe AI Fallback)
+# Sacred Multi-Asset Strategy Engine v2.0 ✨ (Now with AI Predictive Insight + Reinforcement Feedback)
 
 import pandas as pd
 import os
@@ -12,6 +12,7 @@ from modules.utils import clean_price_data
 from modules.assets import detect_market_type
 from modules.scoring import score_strategy_stock, score_strategy_forex, score_strategy_crypto
 from modules.ai_predictor import predict_stock_signal
+from reinforcement_engine import apply_reinforced_weights
 from sacred_logger import log_event
 
 # Load data
@@ -28,18 +29,15 @@ symbols = df['symbol'].unique()
 valid_symbols = []
 allocations = {}
 
+
 def get_strategy_score(symbol, df_symbol):
     market_type = detect_market_type(symbol)
 
     if market_type == "stock":
-        try:
-            ai_score = predict_stock_signal(df_symbol)
-            if ai_score is not None:
-                log_event("strategy", f"🧠 AI score for {symbol}: {ai_score}")
-                return ai_score
-        except Exception as e:
-            log_event("strategy", f"⚠️ AI score failed for {symbol}: {e}")
-
+        ai_score = predict_stock_signal(df_symbol)
+        if ai_score is not None:
+            log_event("strategy", f"🧠 AI score for {symbol}: {ai_score}")
+            return ai_score
         return score_strategy_stock(df_symbol)
 
     elif market_type == "forex":
@@ -70,12 +68,15 @@ if not allocations:
     exit()
 
 total_score = sum(allocations.values())
-allocations = {k: round(v / total_score, 4) for k, v in allocations.items()}
-allocations = dict(sorted(allocations.items(), key=lambda x: x[1], reverse=True))
+raw_allocations = {k: round(v / total_score, 4) for k, v in allocations.items()}
+raw_allocations = dict(sorted(raw_allocations.items(), key=lambda x: x[1], reverse=True))
+
+# ✨ Apply reinforcement engine
+reinforced_alloc = apply_reinforced_weights(raw_allocations, log_path="logs/performance_tracker.json")
 
 # Save sacred allocation
 Path("generated").mkdir(exist_ok=True)
 with open("generated/generated_goals.json", "w") as f:
-    json.dump(allocations, f, indent=4)
+    json.dump(reinforced_alloc, f, indent=4)
 
-log_event("strategy", f"✅ Multi-Asset Strategy complete. Allocated: {list(allocations.keys())}")
+log_event("strategy", f"✅ Multi-Asset Strategy complete. Allocated: {list(reinforced_alloc.keys())}")
