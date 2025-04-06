@@ -1,0 +1,46 @@
+import React, { useEffect, useState } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+
+const ReinforcementGraph = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("/logs/reinforcement_log.json")
+      .then((res) => res.json())
+      .then((json) => {
+        const transformed = Object.entries(json).map(([symbol, values], index) => ({
+          name: symbol,
+          reinforcement: values.reinforcement_score,
+          confidence: values.confidence_level,
+          alignment: index * 2 + 1, // Sacred numerology (odd progression)
+        }));
+        setData(transformed);
+      });
+  }, []);
+
+  return (
+    <div className="p-6 rounded-2xl shadow-lg bg-gradient-to-br from-indigo-100 to-purple-100">
+      <h2 className="text-3xl font-bold mb-6 text-center text-indigo-800">
+        🧠📐 Reinforcement Learning Alignment
+      </h2>
+      <p className="text-center text-sm text-purple-600 mb-4 italic">
+        Aligned with divine flow through sacred ratios & feedback.
+      </p>
+      <ResponsiveContainer width="100%" height={360}>
+        <LineChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 10 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke="#d1d5db" />
+          <XAxis dataKey="name" stroke="#4b5563" />
+          <YAxis stroke="#4b5563" />
+          <Tooltip contentStyle={{ backgroundColor: "#f3e8ff", borderColor: "#c084fc" }} />
+          <Line type="monotone" dataKey="reinforcement" stroke="#6d28d9" strokeWidth={3} dot={{ r: 5 }} />
+          <Line type="monotone" dataKey="confidence" stroke="#10b981" strokeWidth={2} strokeDasharray="5 5" />
+        </LineChart>
+      </ResponsiveContainer>
+      <p className="text-xs text-center mt-4 text-gray-500">
+        Reinforced allocation updates are guided by numerological intelligence ✨
+      </p>
+    </div>
+  );
+};
+
+export default ReinforcementGraph;

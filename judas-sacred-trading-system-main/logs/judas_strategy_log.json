@@ -1,0 +1,90 @@
+[
+  {
+    "timestamp": "2025-03-30T22:58:38.381130",
+    "scores": [
+      {
+        "symbol": "QQQ",
+        "momentum": -0.028647154725837582,
+        "volatility": 0.24582592855698698,
+        "score": -0.11653383497893181
+      }
+    ],
+    "allocation": {
+      "QQQ": 1.0,
+      "CASH": 0.0
+    },
+    "diagnostics": [
+      {
+        "symbol": "QQQ",
+        "status": "scored",
+        "rows": 60
+      },
+      {
+        "symbol": "IMMR",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "LWAY",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "NVDA",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "BSX",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "FTNT",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "SCHD",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "RMBI",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "BFIN",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "SOXX",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "JEPI",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "T",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "VZ",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      },
+      {
+        "symbol": "PCG",
+        "status": "error",
+        "error": "After cleaning, not enough valid price rows."
+      }
+    ],
+    "note": "Momentum-based dynamic allocation using last 10 trading days."
+  }
+]
