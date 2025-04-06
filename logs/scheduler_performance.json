@@ -1,0 +1,772 @@
+[
+  {
+    "timestamp": "2025-04-04T02:06:27.377678",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "ERROR: 'High'",
+      "volume": "ERROR: 'Volume'"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:06:27.564461",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "ERROR: 'High'",
+      "volume": "ERROR: 'Volume'"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:06:27.587574",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "ERROR: 'High'",
+      "volume": "ERROR: 'Volume'"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:06:27.604255",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "ERROR: 'High'",
+      "volume": "ERROR: 'Volume'"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:14:42.729439",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:14:42.754891",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:14:42.775470",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:14:42.795260",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:25:31.819811",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:25:31.833729",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:25:31.842189",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:25:31.850886",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:30:11.189679",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:30:11.217986",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:30:11.240695",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:30:11.263849",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:35:36.014117",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:35:36.082281",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:35:36.106942",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:35:36.129086",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:40:52.380536",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:40:52.408965",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:40:52.432751",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:40:52.455450",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:44:53.154889",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:44:53.190605",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:44:53.224013",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T02:44:53.247922",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:15:52.820340",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:15:56.926451",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:16:01.018190",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:16:05.137773",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:18:32.907239",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:18:36.996367",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:18:41.102303",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:18:45.214190",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:22:10.464454",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:22:14.586545",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:22:18.723901",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:22:22.826590",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:27:59.453698",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:28:03.577764",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:28:07.686292",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:34:29.877658",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "macd": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "ema": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'A', 'P', 'L')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:34:33.990259",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "macd": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "ema": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('T', 'S', 'L', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:34:38.129257",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "macd": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "bollinger": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "ema": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\"",
+      "atr": "SELL",
+      "volume": "ERROR: \"[('N', 'V', 'D', 'A')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T03:34:42.246222",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "macd": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "bollinger": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "ema": "ERROR: \"[('A', 'M', 'D')] not in index\"",
+      "atr": "BUY",
+      "volume": "ERROR: \"[('A', 'M', 'D')] not in index\""
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:12:49.733876",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "NEUTRAL",
+      "macd": "SELL",
+      "bollinger": "BUY",
+      "ema": "SELL",
+      "atr": "NEUTRAL",
+      "volume": "BUY"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:12:49.768775",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "NEUTRAL",
+      "macd": "BUY",
+      "bollinger": "NEUTRAL",
+      "ema": "SELL",
+      "atr": "NEUTRAL",
+      "volume": "NEUTRAL"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:12:49.846674",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "BUY",
+      "macd": "SELL",
+      "bollinger": "BUY",
+      "ema": "SELL",
+      "atr": "NEUTRAL",
+      "volume": "NEUTRAL"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:12:49.880270",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "NEUTRAL",
+      "macd": "SELL",
+      "bollinger": "NEUTRAL",
+      "ema": "SELL",
+      "atr": "NEUTRAL",
+      "volume": "BUY"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:17:47.723856",
+    "symbol": "AAPL",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:17:47.740970",
+    "symbol": "TSLA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:17:47.757780",
+    "symbol": "NVDA",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  },
+  {
+    "timestamp": "2025-04-04T04:17:47.775351",
+    "symbol": "AMD",
+    "consensus": "NEUTRAL",
+    "plugin_votes": {
+      "rsi": "ERROR: 'dict' object is not callable",
+      "macd": "ERROR: 'dict' object is not callable",
+      "bollinger": "ERROR: 'dict' object is not callable",
+      "ema": "ERROR: 'dict' object is not callable",
+      "atr": "ERROR: 'dict' object is not callable",
+      "volume": "ERROR: 'dict' object is not callable"
+    },
+    "num_trades": 0
+  }
+]

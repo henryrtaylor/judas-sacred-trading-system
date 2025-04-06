@@ -1,0 +1,1 @@
+# Signal WebSocket emitter
