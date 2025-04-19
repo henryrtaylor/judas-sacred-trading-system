@@ -1,0 +1,6 @@
+# ibkr_config.yml
+host: 127.0.0.1
+port: 7497          # Paper‑TWS default
+clientId: 9         # Any unused integer
+account: UXXXXXXXX  # Your paper account number
+

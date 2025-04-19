@@ -1,0 +1,10 @@
+# Capital Allocation Policy
+max_single_position_pct: 10
+max_asset_class_pct:
+  equities: 40
+  forex: 40
+  crypto: 15
+  commodities: 25
+risk_budget_daily_pct: 2
+drawdown_guardrail_pct: 10
+slippage_buffer_pct: 0.05
