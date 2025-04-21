@@ -1,0 +1,20 @@
+# Judas Phase 27 - Risk Thresholds and Blessing Permissions
+
+# General limits
+max_trades_per_day: 15
+max_drawdown_percent: 10.0
+
+# Per-trade rules
+stop_loss_percent: 2.0
+take_profit_percent: 5.0
+max_position_risk_percent: 2.0
+
+# Symbol permissions
+allow_all_symbols: true
+blacklist_symbols:
+  - GME
+  - AMC
+
+# Trade filtering
+min_price: 1.0
+max_price: 10000.0

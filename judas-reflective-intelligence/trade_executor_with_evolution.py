@@ -1,9 +1,10 @@
 from safe_order import verify_order
 from override_check import check_override
 from execution_logger import log_execution
+from evolve_agent import log_trade_result
 from ib_insync import IB, Stock, MarketOrder  # Requires ib_insync installed
 
-def execute_order(symbol, size, side, price, mode="paper", context="manual"):
+def execute_order(symbol, size, side, price, mode="paper", context="manual", strategy="unknown", confidence=0.0, zion_approved=False):
     try:
         verify_order(symbol, size, side, context)
 
@@ -14,9 +15,8 @@ def execute_order(symbol, size, side, price, mode="paper", context="manual"):
         if mode == "live":
             print(f"🚀 LIVE TRADE: {side} {symbol} size={size} @ {price}")
             ib = IB()
-            ib.connect('127.0.0.1', 7497, clientId=1)  # Make sure TWS or Gateway is running
-
-            contract = Stock(symbol.split('-')[0], 'SMART', 'USD')  # Strip suffix like -USD
+            ib.connect('127.0.0.1', 7497, clientId=1)
+            contract = Stock(symbol.split('-')[0], 'SMART', 'USD')
             order = MarketOrder(side.upper(), abs(size))
             trade = ib.placeOrder(contract, order)
             ib.sleep(1)
@@ -25,12 +25,11 @@ def execute_order(symbol, size, side, price, mode="paper", context="manual"):
             print(f"🧪 PAPER TRADE: {side} {symbol} size={size} @ {price}")
 
         log_execution(symbol, size, side, price, context)
+        # Simulate result outcome as WIN or LOSS
+        result = "WIN" if price % 2 == 0 else "LOSS"
+        log_trade_result(symbol, strategy, confidence, result, zion_approved)
         return True
 
     except Exception as e:
         print(f"❌ Trade execution failed: {e}")
         return False
-
-# EXAMPLE USAGE
-if __name__ == "__main__":
-    execute_order(symbol="AAPL", size=10, side="BUY", price=185.50, mode="paper", context="Test Rebalance")
