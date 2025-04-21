@@ -1,76 +1,44 @@
-# -------------- utils/data_router.py --------------
+# ------------------ utils/data_router.py --------------------
+"""Provider‑agnostic get_bars with round‑robin equity routing
+and Polygon‑only crypto."""
 from __future__ import annotations
-import logging, os
-from pathlib import Path
-from datetime import datetime as _dt
-from typing import Any, Dict, Callable, List
+import itertools, logging
+from datetime import date as _date
+from utils.polygon_adapter import fetch_polygon
+from utils.finnhub_adapter import fetch_finnhub
+from utils.alpha_adapter import fetch_alpha
+from utils.yahoo_adapter import fetch_yahoo
 
-from dotenv import load_dotenv
-load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / ".env", override=False)
+_PROVIDERS_EQUITY = [fetch_finnhub, fetch_alpha, fetch_yahoo, fetch_polygon]
+_provider_cycle = itertools.cycle(_PROVIDERS_EQUITY)
 
-# —––– INDIVIDUAL PROVIDERS ––––
-from .finnhub_adapter    import fetch_finnhub    # type: ignore
-from .alpha_adapter      import fetch_alpha      # type: ignore
-from .yahoo_adapter      import fetch_yahoo      # type: ignore
-from .polygon_adapter    import fetch_polygon    # type: ignore
 
-# Try equities with Finnhub ➜ Alpha ➜ Yahoo first, Polygon last (crypto goes Polygon only)
-_PROVIDERS: List[Callable[[str,str,str], Dict[str,Any] | None]] = [
-    fetch_finnhub,
-    fetch_alpha,
-    fetch_yahoo,
-    fetch_polygon
-]
+def _norm(sym: str) -> str:
+    return sym.upper()
 
-def _norm(ticker: str) -> str:
+
+def get_bars(ticker: str, *, start: str | None = None, end: str | None = None):
+    """Unified daily bar fetch.
+
+    For equities/ETFs: Finnhub → Alpha → Yahoo → Polygon.
+    For crypto (identified by X: prefix or -USD suffix): Polygon only.
     """
-    • Upper‑cases equities.
-    • Converts 'BTC-USD' ➜ 'X:BTCUSD', 'ETH-USD' ➜ 'X:ETHUSD' for Polygon.
-    """
-    up = ticker.upper()
-    if up.endswith("-USD"):
-        return "X:" + up.replace("-", "")
-    return up
-
-# --------------------------------------------------
-def get_bars(ticker: str, start: str, end: str) -> Dict[str, Any] | None:
-    """
-    • Crypto symbols (‑USD) go straight to Polygon.
-    • Equities/ETFs try Finnhub → Alpha → Yahoo → Polygon.
-    """
+    start = start or _date.today().isoformat()
+    end = end or start
     sym = _norm(ticker)
 
-    # --- crypto shortcut --------------------------------------------------
-    if sym.startswith("X:"):                       # BTC‑USD → X:BTCUSD
-        return fetch_polygon(sym, start=start, end=end)
+    # ---- crypto shortcut -----------------------------------
+    if sym.endswith("-USD") or sym.startswith("X:"):
+        symbol = sym if sym.startswith("X:") else "X:" + sym.replace("-USD", "USD")
+        return fetch_polygon(symbol, start, end)
 
-    # --- equities round‑robin ---------------------------------------------
-    for fetch in _PROVIDERS:                       # finnhub ➜ alpha ➜ yahoo ➜ polygon
-        try:
-            js = fetch(sym, start=start, end=end)  # keyword args keep signatures happy
-            if js and js.get("results"):
-                logging.info("%s fetched via %s (%d bars)",
-                             ticker, fetch.__name__, len(js['results']))
-                return js
-        except Exception as exc:
-            logging.warning("%s provider %s failed: %s", ticker, fetch.__name__, exc)
-
-    logging.error("All providers failed for %s", ticker)
+    # ---- equity round‑robin --------------------------------
+    tried = []
+    for _ in range(len(_PROVIDERS_EQUITY)):
+        provider = next(_provider_cycle)
+        tried.append(provider.__name__)
+        js = provider(sym, start=start, end=end)
+        if js:
+            return js
+    logging.warning("All providers failed for %s (%s)", sym, ", ".join(tried))
     return None
-
-    """
-    Round‑robin through providers until one returns JSON with 'results'.
-    """
-    sym = _norm(ticker)
-    for fetch in _PROVIDERS:
-        try:
-            js = fetch(sym, start=start, end=end)
-
-            if js and js.get("results"):
-                logging.info("%s fetched via %s (%d bars)", ticker, fetch.__name__, len(js["results"]))
-                return js
-        except Exception as exc:
-            logging.warning("%s provider %s failed: %s", ticker, fetch.__name__, exc)
-    logging.error("All providers failed for %s", ticker)
-    return None
-# -------------- end utils/data_router.py ----------

@@ -1,4 +1,4 @@
-# -------------- utils/polygon_adapter.py --------------
+# ------------------ utils/polygon_adapter.py ------------------
 from __future__ import annotations
 import logging, os, time, requests
 from datetime import datetime as _dt

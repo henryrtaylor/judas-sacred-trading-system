@@ -1,8 +1,7 @@
-# -------------- yahoo_adapter.py --------------
-"""Yahoo Finance fallback using yfinance (no key)."""
+# ------------------ utils/yahoo_adapter.py -------------------
+"""Yahoo Finance fallback using yfinance."""
 from __future__ import annotations
-import logging
-import datetime as dt
+import logging, datetime as dt
 try:
     import yfinance as yf
 except ImportError:
