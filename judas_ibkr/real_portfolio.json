@@ -1,0 +1,22 @@
+[
+  {
+    "symbol": "AAPL",
+    "quantity": 20.0,
+    "avgCost": 220.195035
+  },
+  {
+    "symbol": "NVDA",
+    "quantity": 10.0,
+    "avgCost": 105.59604
+  },
+  {
+    "symbol": "QQQ",
+    "quantity": 18.0,
+    "avgCost": 466.4756
+  },
+  {
+    "symbol": "SCHD",
+    "quantity": 65.0,
+    "avgCost": 27.59695845
+  }
+]

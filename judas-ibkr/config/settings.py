@@ -1,5 +1,0 @@
-# settings.py
-
-WATCHLIST = ["AAPL", "TSLA", "NVDA", "MSFT"]
-MAX_POSITION_SIZE = 100
-PAPER_MODE = True

@@ -1,0 +1,78 @@
+@@  utils/__init__.py (new)
++"""utils package marker – required so Python treats the directory as a package."""
++
+@@  utils/data_router.py (new)
++"""
++Unified daily‑bar fetch with round‑robin equity providers and Polygon‑only
++crypto shortcut.
++"""
++from __future__ import annotations
++import itertools, logging
++from datetime import date as _date
++
++from utils.polygon_adapter import fetch_polygon
++from utils.finnhub_adapter import fetch_finnhub
++from utils.alpha_adapter  import fetch_alpha
++from utils.yahoo_adapter  import fetch_yahoo
++
++_PROVIDERS_EQUITY = [fetch_finnhub, fetch_alpha, fetch_yahoo, fetch_polygon]
++_provider_cycle   = itertools.cycle(_PROVIDERS_EQUITY)
++
++# ----------------------------------------------------------------------
++def _norm(sym: str) -> str:
++    return sym.upper()
++
++def get_bars(ticker: str, *, start: str|None=None, end: str|None=None):
++    """
++    For equities/ETFs: Finnhub → Alpha → Yahoo → Polygon (round‑robin).
++    For crypto (X: prefix or ‑USD suffix): Polygon only.
++    Returns Polygon/Finnhub/Alpha/Yahoo JSON or None.
++    """
++    start = start or _date.today().isoformat()
++    end   = end   or start
++    sym   = _norm(ticker)
++
++    # ---- crypto shortcut --------------------------------------------
++    if sym.endswith(\"-USD\") or sym.startswith(\"X:\"):
++        pol = sym if sym.startswith(\"X:\") else \"X:\"+sym.replace(\"-USD\",\"USD\")
++        return fetch_polygon(pol, start, end)
++
++    # ---- equity providers ------------------------------------------
++    tried = []
++    for _ in range(len(_PROVIDERS_EQUITY)):
++        provider = next(_provider_cycle)
++        tried.append(provider.__name__)
++        js = provider(sym, start=start, end=end)
++        if js:
++            return js
++    logging.warning(\"All providers failed for %s (%s)\", sym, \", \".join(tried))
++    return None
++
+@@  scripts/multi_market_scheduler.py
+-import sys, argparse, logging, datetime as _dt
+-from pathlib import Path
+-
+-ROOT = Path(__file__).resolve().parent.parent
+-sys.path.insert(0, str(ROOT))
+-sys.path.insert(0, str(ROOT / \"utils\"))
+-from utils.polygon_adapter import fetch_polygon         # OLD direct call
++import sys, argparse, logging, datetime as _dt
++from pathlib import Path
++
++ROOT = Path(__file__).resolve().parent.parent
++sys.path.insert(0, str(ROOT))
++sys.path.insert(0, str(ROOT / \"utils\"))
++
++from utils.data_router import get_bars                   # NEW router
+@@
+-WATCH = [\"SPY\",\"QQQ\",\"TLT\",\"GLD\",\"BTC-USD\",\"ETH-USD\"]
+-
+-def fetch_window(sym:str, day:str):
+-    d0=_dt.date.fromisoformat(day); d1=d0+_dt.timedelta(days=1)
+-    return fetch_polygon(sym, d0.isoformat(), d1.isoformat())  # OLD call
++WATCH = [\"SPY\",\"QQQ\",\"TLT\",\"GLD\",\"BTC-USD\",\"ETH-USD\"]
++
++def fetch_window(sym:str, day:str):
++    d0=_dt.date.fromisoformat(day); d1=d0+_dt.timedelta(days=1)
++    return get_bars(sym, start=d0.isoformat(), end=d1.isoformat())  # NEW call
+ PATCH
