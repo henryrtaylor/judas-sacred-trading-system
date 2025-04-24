@@ -1,0 +1,580 @@
+[
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-30T23:32:46.961738",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy",
+        "commentary": "Increasing exposure to QQQ by $1,052.67 to meet target weight of 100.00%."
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold",
+        "commentary": "CASH is already balanced at target weight of 0.00%."
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-30T23:38:05.637050",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Increasing exposure to QQQ by $1,052.67 to meet target weight of 100.00%."
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold",
+        "volatility": 0.0,
+        "commentary": "CASH is already balanced at target weight of 0.00%."
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-30T23:44:14.165311",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1049.04,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $1,049.04 of QQQ after fees/slippage. (raw delta: $1,052.67)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold",
+        "volatility": 0.0,
+        "commentary": "CASH trade skipped after accounting for fee ($1.00) and slippage ($0.00)."
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1049.04
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-30T23:47:41.844831",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-30T23:55:01.884013",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-31T00:06:23.011834",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-31T00:13:00.157424",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  },
+  {
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1537.05,
+        "difference": 1052.67,
+        "action": "buy"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 0.0,
+        "difference": 0.0,
+        "action": "hold"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 1052.67
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-31T00:13:39.065222",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  },
+  {
+    "timestamp": "2025-03-31T00:13:53.241767",
+    "simulation": [
+      {
+        "symbol": "QQQ",
+        "current_value": 484.38,
+        "target_value": 1383.34,
+        "difference": 895.71,
+        "action": "buy",
+        "volatility": 0.24582592855698698,
+        "commentary": "Buy $895.71 of QQQ after fees/slippage. (raw delta: $898.96)"
+      },
+      {
+        "symbol": "CASH",
+        "current_value": 0.0,
+        "target_value": 153.7,
+        "difference": 152.32,
+        "action": "buy",
+        "volatility": 0.0,
+        "commentary": "Buy $152.32 of CASH after fees/slippage. (raw delta: $153.70)"
+      }
+    ],
+    "summary": {
+      "total_value": 1537.05,
+      "rebalancing": [
+        {
+          "symbol": "QQQ",
+          "action": "buy",
+          "amount": 895.71
+        },
+        {
+          "symbol": "CASH",
+          "action": "buy",
+          "amount": 152.32
+        }
+      ]
+    }
+  }
+]{"timestamp": "2025-03-31T11:16:38.684140", "portfolio_value": 1537.045300046715, "orders": [{"symbol": "QQQ", "target_pct": 1.0, "allocation": 15.37}, {"symbol": "CASH", "target_pct": 0.0, "allocation": 0.0}]}
+{"timestamp": "2025-04-01T18:11:50.530419", "portfolio_value": 1537.045300046715, "orders": [{"symbol": "QQQ", "target_pct": 1.0, "allocation": 15.37}]}
