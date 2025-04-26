@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 import sys, os
-# ensure project root is on sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(__file__, '..', '..')))
+# ensure project root (one level above this script) is on sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(__file__, '..')))
 
-import asyncio, json
+import asyncio
+import json
 import redis.asyncio as aioredis
 
 from datetime import datetime as dt, timedelta
@@ -11,22 +12,22 @@ from functools import lru_cache
 
 from ib_insync import IB
 
-from judas_ibkr.rebalancer import Rebalancer
+# import last_price from utils
 from utils.redis_ticks import last_price
 from utils.data_router import get_bars
 from utils.broker_adapter import fetch_ibkr_state
 
 # ─── Strategy parameters (env vars override defaults) ───────────────────────────
-WATCH_LIST          = os.getenv('WATCH_LIST', "SPY,QQQ,TLT,GLD,AAPL,NVDA").split(',')
+WATCH_LIST = os.getenv('WATCH_LIST', "SPY,QQQ,TLT,GLD,AAPL,NVDA,AMZN").split(',')
 REDIS_URL           = os.getenv('REDIS_URL', 'redis://127.0.0.1:6379')
 IB_HOST             = os.getenv('IBKR_HOST', '127.0.0.1')
 IB_PORT             = int(os.getenv('IBKR_API_PORT', 7497))
 IB_CLIENT_ID        = int(os.getenv('IBKR_CLIENT_ID', 1))
-INTERVAL            = int(os.getenv('REBALANCE_INTERVAL', 60))      # seconds between rebalances
+INTERVAL = int(os.getenv('REBALANCE_INTERVAL', '60'))      # seconds between rebalances
 LEVERAGE            = float(os.getenv('PORTFOLIO_LEVERAGE', 1.0))
 MIN_PRICE_POINTS    = int(os.getenv('MIN_PRICE_POINTS', 4))         # bars for fallback
-THRESHOLD           = float(os.getenv('REBALANCE_THRESHOLD', 0.05))  # fraction of equity
-MAX_TRADE_FRACTION  = float(os.getenv('REBALANCE_MAX_TRADE', 0.1))   # fraction of equity per trade
+THRESHOLD = float(os.getenv('REBALANCE_THRESHOLD', '0.05'))  # fraction of equity
+MAX_TRADE_FRACTION = float(os.getenv('REBALANCE_MAX_TRADE', '0.1'))   # fraction of equity per trade
 # ────────────────────────────────────────────────────────────────────────────────
 
 @lru_cache(maxsize=None)
@@ -42,7 +43,6 @@ async def stream_and_rebalance():
     redis = aioredis.from_url(REDIS_URL)
     ps = redis.pubsub()
     await ps.subscribe(*[f"ticks:{s}" for s in WATCH_LIST])
-    # right after: await ps.subscribe(*[f"ticks:{s}" for s in WATCH_LIST])
     print(f"[Rebalancer] Subscribed to channels: {[f'ticks:{s}' for s in WATCH_LIST]}")
 
     # 2) connect to IBKR asynchronously
@@ -50,6 +50,7 @@ async def stream_and_rebalance():
     await ib.connectAsync(IB_HOST, IB_PORT, clientId=IB_CLIENT_ID)
 
     # 3) instantiate your Rebalancer
+    from judas_ibkr.rebalancer import Rebalancer
     rebalancer = Rebalancer(
         watch_list=WATCH_LIST,
         leverage=LEVERAGE,
@@ -72,9 +73,7 @@ async def stream_and_rebalance():
     while True:
         msg = await ps.get_message(ignore_subscribe_messages=True, timeout=1.0)
         if msg and msg['type'] == 'message':
-            # first parse…
             payload = json.loads(msg['data'])
-            # …then debug‐print
             print(f"[{dt.now()}] Tick → {payload['s']} @ {payload['p']}")
             rebalancer.update_price(payload['s'], payload['p'])
 
@@ -85,9 +84,16 @@ async def stream_and_rebalance():
                 await rebalancer.execute()
             last_rebalance = now
 
+        if int(dt.utcnow().timestamp()) % 10 == 0:
+            print(f"[{dt.now()}] …waiting for ticks…")
+
         await asyncio.sleep(0.1)
 
 if __name__ == '__main__':
-    # Use asyncio.run() instead of ib_insync.util.run()
-    import asyncio
     asyncio.run(stream_and_rebalance())
+
+def should_rebalance(self, now=None):
+    now = now or dt.utcnow()  # Use the current UTC time if 'now' is not provided
+    elapsed = (now - self.last_rebalance_time).total_seconds()  # Calculate elapsed time
+    filled = [p for p in self.prices.values() if p is not None]  # Filter non-None prices
+    return elapsed >= self.min_price_points and len(filled) >= self.min_price_points

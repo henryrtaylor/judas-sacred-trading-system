@@ -1,69 +1,52 @@
-#!/usr/bin/env python
-"""
-Subscribe to Interactive‑Brokers tick‑by‑tick data and publish each tick
-to Redis (*channel = "ticks:*symbol*"*).
+import asyncio, json, os
+from collections import deque
+from typing import Deque, Dict, Optional
 
-• Requires: ib_insync, redis‑py
-• Run once at start‑of‑day; reconnect logic handles TWS restarts.
-"""
-import asyncio, json, os, time
-from datetime import datetime as dt
-
-from ib_insync import IB, Stock, util
-import redis.asyncio as aioredis               # redis‑py ≥ 4.2
-
-# ── symbols we really stream ─────────────────────────────────────────
-SYMBOLS = [
-    "AAPL", "GLD", "NVDA", "QQQ", "SPY",  # alphabetical for clarity
-]
-# (Crypto removed for now; can be re‑enabled once permissions are added)
+import redis.asyncio as aioredis
 
 REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6379")
 
+class TickCache:
+    """Holds the *latest* tick per symbol in RAM (thread-safe)."""
 
-async def main() -> None:
-    """Main reconnect loop – keeps streams alive and republishes ticks."""
-    rds = aioredis.from_url(REDIS_URL)
-    ib: IB = IB()
+    def __init__(self, symbols):
+        self.latest: Dict[str, float] = {}
+        self._q: Deque[tuple[str, float]] = deque(maxlen=1000)
+        self._symbols = symbols
+        self._task = None
 
-    while True:  # auto‑reconnect loop
-        try:
-            if not ib.isConnected():
-                print("🔌 connecting TWS …")
-                await ib.connectAsync("127.0.0.1", 7497, clientId=11)
-                ib.reqMarketDataType(1)  # 1 = live, 4 = delayed‑frozen
+    async def start(self):
+        rds = aioredis.from_url(REDIS_URL)
+        pub = rds.pubsub()
+        await pub.subscribe(*[f"ticks:{s}" for s in self._symbols])
 
-                for sym in SYMBOLS:
-                    contract = Stock(sym, "SMART", "USD")
-                    ib.reqTickByTickData(
-                        contract,
-                        tickType="Last",
-                        numberOfTicks=0,
-                        ignoreSize=True,
-                    )
-
-            # Drain the IB event queue and publish to Redis
-            await asyncio.sleep(0.02)
-            for tick in ib.pendingTickers():
-                if not tick.last or tick.last <= 0:
+        async def _reader():
+            async for msg in pub.listen():
+                if msg["type"] != "message":
                     continue
-                msg = {
-                    "t": int(tick.time.timestamp() * 1000),  # epoch‑ms
-                    "p": tick.last,
-                    "s": tick.contract.symbol,
-                    "sz": tick.lastSize,
-                }
-                channel = f"ticks:{tick.contract.symbol}"
-                await rds.publish(channel, json.dumps(msg))
-                # cache latest price (30 s expiry)
-                await rds.set(f"tick:last:{tick.contract.symbol}", tick.last, ex=30)
+                data = json.loads(msg["data"])
+                sym  = data["s"]
+                self.latest[sym] = data["p"]
+                self._q.append((sym, data["p"]))
 
-        except Exception as exc:
-            print("⚠️ tick streamer error:", exc)
-            ib.disconnect()
-            await asyncio.sleep(5)  # back‑off before retry
+        self._task = asyncio.create_task(_reader())
 
+    def price(self, sym: str) -> Optional[float]:
+        return self.latest.get(sym)
+
+async def last_price(symbol: str) -> Optional[float]:(symbol: str) -> Optional[float]:
+    raw = await aioredis.from_url(REDIS_URL).get(f"tick:last:{symbol}")
+    return float(raw) if raw else None
+
+async def main():
+    # Example usage of TickCache
+    tc = TickCache(["SPY", "QQQ"])
+    await tc.start()
+
+    # Now run an endless print loop asynchronously
+    while True:
+        print("SPY last =", tc.price("SPY"))
+        await asyncio.sleep(1)
 
 if __name__ == "__main__":
-    util.patchAsyncio()  # ib_insync helper integrates asyncio loop
     asyncio.run(main())

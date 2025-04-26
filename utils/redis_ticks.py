@@ -34,23 +34,19 @@ class TickCache:
     def price(self, sym: str) -> Optional[float]:
         return self.latest.get(sym)
 
-
-# Async Redis client
-_RDS = aioredis.from_url(REDIS_URL)
-
 async def last_price(symbol: str) -> Optional[float]:
-    raw = await _RDS.get(f"tick:last:{symbol}")
+    raw = await aioredis.from_url(REDIS_URL).get(f"tick:last:{symbol}")
     return float(raw) if raw else None
 
-# Synchronous wrapper removed to avoid blocking in async context
-# def last_price_sync(symbol: str) -> Optional[float]:
-#     return asyncio.run(last_price(symbol))
-
-if __name__ == "__main__":
-    import time, asyncio
+async def main():
+    # Example usage of TickCache
     tc = TickCache(["SPY", "QQQ"])
-    asyncio.run(tc.start())          # fire-and-forget in real code
+    await tc.start()
 
+    # Now run an endless print loop asynchronously
     while True:
         print("SPY last =", tc.price("SPY"))
-        time.sleep(1)
+        await asyncio.sleep(1)
+
+if __name__ == "__main__":
+    asyncio.run(main())
