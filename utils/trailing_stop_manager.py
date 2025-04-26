@@ -9,13 +9,8 @@ from judas_reflective_intelligence.rebalance_scheduler_ai import generate_target
 from utils.profit_tracker import ProfitTracker
 from utils.take_profit_manager import TakeProfitManager
 from utils.dynamic_scaling_manager import DynamicScalingManager
-# Phase 3 managers
+# Phase 3 manager: Trailing Stop
 from utils.trailing_stop_manager import TrailingStopManager
-from utils.risk_guard_manager import RiskGuardManager
-# Phase 4 manager
-from utils.volatility_stop_manager import VolatilityStopManager
-# Celestial Risk Insights
-from utils.risk_insights_manager import RiskInsightsManager
 
 class Rebalancer:
     def __init__(
@@ -25,7 +20,7 @@ class Rebalancer:
         threshold: float,
         max_trade_fraction: float,
         min_price_points: int,
-        ib,  # your IB connection instance
+        ib,
     ):
         self.watch_list          = watch_list
         self.leverage            = leverage
@@ -40,16 +35,8 @@ class Rebalancer:
         self.profit_tracker      = ProfitTracker()
         self.take_profit_mgr     = TakeProfitManager(self.profit_tracker)
         self.scaler              = DynamicScalingManager(self.profit_tracker)
-        # Phase 3: Trailing Stop & Risk Guard
+        # Phase 3: Trailing Stop
         self.trailing_stop_mgr   = TrailingStopManager(self.profit_tracker, drawdown_pct=3.0)
-        self.risk_guard          = RiskGuardManager(max_drawdown_pct=5.0, max_daily_loss_pct=2.0)
-        # Phase 4: Volatility Stop
-        self.vol_stop_mgr        = VolatilityStopManager(atr_window=14, atr_multiplier=2.0)
-        # Celestial Risk Insights
-        self.risk_insights       = RiskInsightsManager(
-            alert_thresholds={'drawdown': 5.0, 'volatility': 0.02},
-            rolling_window=20
-        )
 
     def update_price(self, symbol: str, price: float):
         # Price feed update
@@ -58,8 +45,6 @@ class Rebalancer:
         self.profit_tracker.update_price(symbol, price)
         # Phase 3: update trailing stop peak
         self.trailing_stop_mgr.update_price(symbol, price)
-        # Phase 4: update ATR history
-        self.vol_stop_mgr.update_price(symbol, price)
 
     def should_rebalance(self, now=None):
         now = now or dt.utcnow()
@@ -78,17 +63,6 @@ class Rebalancer:
         # 2) compute portfolio value
         total_value = cash + sum(self.prices[s] * positions.get(s, 0) for s in self.watch_list)
 
-        # Celestial Risk Insights: record equity
-        self.risk_insights.record_equity(total_value)
-
-        # Phase 3: risk guard enforcement
-        self.risk_guard.record_portfolio_value(total_value)
-        if self.risk_guard.enforce(self.ib, positions, total_value):
-            self.last_rebalance_time = dt.utcnow()
-            # Alerts on enforcement
-            self.risk_insights.check_alerts()
-            return
-
         # 3) compute target weights (AI model)
         target_weights = generate_target_weights(self.prices, total_value, positions)
 
@@ -103,12 +77,7 @@ class Rebalancer:
             size = abs(delta)
             print(f"[{dt.now()}] [safe_execute] {side} {size} {sym} @ market (ref={price_ref})")
 
-            # Execute and record trade P&L placeholder
             safe_execute(self.ib, sym, delta, price_ref, False)
-            # Optionally: compute pnl and record
-            # pnl = delta * price_ref
-            # self.risk_insights.record_trade(pnl)
-
             if delta > 0:
                 self.profit_tracker.update_entry(sym, price_ref)
 
@@ -122,20 +91,11 @@ class Rebalancer:
             if base_qty > 0:
                 self.scaler.update_and_scale(sym, base_qty)
 
-        # 7) Trailing Stop checks
+        # 7) Trailing-Stop checks
         for sym in self.watch_list:
             qty = positions.get(sym, 0)
             if qty > 0:
                 self.trailing_stop_mgr.check_and_execute(sym, quantity=qty)
-
-        # 8) Volatility Stop checks
-        for sym in self.watch_list:
-            qty = positions.get(sym, 0)
-            if qty > 0:
-                self.vol_stop_mgr.check_and_execute(sym, quantity=qty)
-
-        # Celestial Risk Insights: final alert check
-        self.risk_insights.check_alerts()
 
         self.last_rebalance_time = dt.utcnow()
 
