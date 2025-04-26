@@ -1,2 +1,0 @@
-# Example cron job (runs every 30 minutes)
-*/30 * * * * /usr/bin/python3 /path/to/scheduler_heartbeat.py >> /path/to/logs/cron.log 2>&1

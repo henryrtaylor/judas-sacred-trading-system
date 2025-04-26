@@ -29,3 +29,11 @@ logs/
 .DS_Store
 *.bak
 *.swpjudas-reflective-intelligence/config/judas-sheets-creds.json
+
+# ignore legacy or upstream dirs
+judas-reflective-intelligence/
+data/
+redis-only.yml
+multi_source_patch.diff
+tick_hub.py
+# …etc.

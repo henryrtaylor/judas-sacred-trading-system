@@ -12,7 +12,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from typing import Dict
 import redis.asyncio as aioredis
-import asyncio                              # << add this too (used below)
+import asyncio
 import os
 
 # ── path bootstrap ───────────────────────────────────────────
@@ -37,10 +37,6 @@ WATCH = ["SPY", "QQQ", "TLT", "GLD", "BTC-USD", "ETH-USD"]
 _RDS = aioredis.from_url(os.getenv("REDIS_URL", "redis://127.0.0.1:6379"))
 
 async def _latest_tick(symbol: str) -> float | None:
-    """
-    Return the most recent tick price cached in Redis by tick_streamer.py,
-    or None if no tick exists.
-    """
     raw = await _RDS.get(f"tick:last:{symbol}")
     if not raw:
         return None
@@ -54,17 +50,13 @@ async def _latest_tick(symbol: str) -> float | None:
 def last_week_dates() -> list[date]:
     today = date.today()
     last_mon = today - timedelta(days=today.weekday() + 7)
-    return [last_mon + timedelta(days=i) for i in range(5)]  # Mon‑Fri
+    return [last_mon + timedelta(days=i) for i in range(5)]
 
-
-def close_price(sym: str, day: date) -> float:
-    """
-    • If *day* is **today**, try Redis tick first (real‑time).
-    • Otherwise fall back to daily aggregate bars.
-    """
+async def close_price(sym: str, day: date) -> float:
     if day == date.today():
-        price = asyncio.run(_latest_tick(sym))
-        if price:
+        # fetch the latest tick asynchronously
+        price = await _latest_tick(sym)
+        if price is not None:
             return price
 
     nxt = day + timedelta(days=1)
@@ -74,62 +66,66 @@ def close_price(sym: str, day: date) -> float:
     rec = js["results"][0]
     return rec.get("c") or rec.get("Close") or next(iter(rec.values()))
 
-# ── live snapshot ─────────────────────────────────────────────
+async def main():
+    # Async fetch of cash and positions
+    cash, positions = await fetch_ibkr_state()
 
-cash, positions = fetch_ibkr_state()  # USD, dict[str,float]
+    logging.basicConfig(level=logging.INFO, format="[BT] %(message)s")
+    logging.info("START cash %.2f  positions %s", cash, positions)
 
-logging.basicConfig(level=logging.INFO, format="[BT] %(message)s")
-logging.info("START cash %.2f  positions %s", cash, positions)
+    start_equity: float | None = None
 
-start_equity: float | None = None
+    for day in last_week_dates():
+        symbols = sorted(set(WATCH).union(positions))
 
-# ── main loop ─────────────────────────────────────────────────
-for day in last_week_dates():
-    symbols = sorted(set(WATCH).union(positions))
+        prices: Dict[str, float] = {}
+        guessed = 0
+        for s in symbols:
+            try:
+                prices[s] = await close_price(s, day)
+            except ValueError:
+                px, _ = guess_price(s)
+                prices[s] = px
+                guessed += 1
+        real = len(symbols) - guessed
 
-    prices: Dict[str, float] = {}
-    guessed = 0
-    for s in symbols:
-        try:
-            prices[s] = close_price(s, day)
-        except ValueError:
-            px, _ = guess_price(s)
-            prices[s] = px
-            guessed += 1
-    real = len(symbols) - guessed
-
-    if real < 4:
-        logging.warning("%s skipped (only %d real bars)", day, real)
-        continue
-
-    eq = cash + sum(positions.get(s, 0) * prices[s] for s in positions)
-    if start_equity is None:
-        start_equity = eq
-
-    weights = calculate_target_weights(prices, eq, positions)
-    target = {s: weights.get(s, 0) * eq / prices[s] for s in prices}
-
-    for s, tgt in target.items():
-        cur = positions.get(s, 0)
-        delta = tgt - cur
-        if abs(delta) < 1e-6:
+        if real < 4:
+            logging.warning("%s skipped (only %d real bars)", day, real)
             continue
-        cash -= delta * prices[s]
-        positions[s] = tgt
 
-    eq = cash + sum(positions[s] * prices.get(s, 0) for s in positions)
-    pnl = eq - start_equity
-    logging.info("%s  eq %.0f  P/L %.0f (%.2f%%)  real:%d  guess:%d",
-                 day, eq, pnl, pnl / start_equity * 100, real, guessed)
+        eq = cash + sum(positions.get(s, 0) * prices[s] for s in positions)
+        if start_equity is None:
+            start_equity = eq
 
-# ── final summary ─────────────────────────────────────────────
-if start_equity is None:
-    logging.warning("No valid days – cannot compute P/L")
-    sys.exit()
+        weights = calculate_target_weights(prices, eq, positions)
+        target = {s: weights.get(s, 0) * eq / prices[s] for s in prices}
 
-final_prices = {s: close_price(s, last_week_dates()[-1]) for s in positions}
-final_equity = cash + sum(positions[s] * final_prices[s] for s in positions)
-pnl = final_equity - start_equity
-logging.info("-------")
-logging.info("WEEK END equity %.2f", final_equity)
-logging.info("Total P/L  %.2f USD  (%.2f%%)", pnl, pnl / start_equity * 100)
+        for s, tgt in target.items():
+            cur = positions.get(s, 0)
+            delta = tgt - cur
+            if abs(delta) < 1e-6:
+                continue
+            cash -= delta * prices[s]
+            positions[s] = tgt
+
+        eq = cash + sum(positions[s] * prices.get(s, 0) for s in positions)
+        pnl = eq - start_equity
+        logging.info(
+            "%s  eq %.0f  P/L %.0f (%.2f%%)  real:%d  guess:%d",
+            day, eq, pnl, pnl / start_equity * 100, real, guessed
+        )
+
+    if start_equity is None:
+        logging.warning("No valid days – cannot compute P/L")
+        sys.exit()
+
+    # Final summary asynchronously
+    final_prices = {s: await close_price(s, last_week_dates()[-1]) for s in positions}
+    final_equity = cash + sum(positions[s] * final_prices[s] for s in positions)
+    pnl = final_equity - start_equity
+    logging.info("-------")
+    logging.info("WEEK END equity %.2f", final_equity)
+    logging.info("Total P/L  %.2f USD  (%.2f%%)", pnl, pnl / start_equity * 100)
+
+if __name__ == "__main__":
+    asyncio.run(main())

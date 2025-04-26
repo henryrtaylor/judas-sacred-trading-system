@@ -1,1 +1,0 @@
-// React compiled JS would go here

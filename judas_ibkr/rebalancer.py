@@ -56,9 +56,12 @@ class Rebalancer:
             current_qty = positions.get(sym, 0)  # current quantity from positions
             delta = desired_qty - current_qty
             price_ref = self.prices[sym]
-
-            # Place the order via safe_execute(ib, sym, delta_qty, ref_price, guessed)
-            # guessed=False means “don’t guess a limit price” (i.e. use market)
+            
+            # Added ordering log before safe_execute
+            side = 'BUY' if delta > 0 else 'SELL'
+            size = abs(delta)
+            print(f"[{dt.now()}] [safe_execute] {side} {size} {sym} @ market (ref={price_ref})")
+            
             safe_execute(
                 self.ib,      # IB client
                 sym,          # ticker symbol

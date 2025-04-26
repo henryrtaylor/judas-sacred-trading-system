@@ -1,1 +1,0 @@
-// Recharts-based chart component
