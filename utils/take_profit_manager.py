@@ -1,6 +1,6 @@
 from typing import Optional
 from .profit_tracker import ProfitTracker
-from trade_executor import safe_execute
+from judas_ibkr.safe_order import safe_execute
 
 class TakeProfitManager:
     """
