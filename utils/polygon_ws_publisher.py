@@ -5,7 +5,7 @@ import websockets
 import redis.asyncio as aioredis
 
 POLY_KEY = os.getenv("POLYGON_API_KEY")
-STOCKS = ["SPY", "QQQ", "TLT", "GLD", "AAPL", "NVDA", "AMZN"]
+STOCKS = SYMBOLS = ["SPY", "QQQ", "TLT", "GLD"]
 CRYPTOS = ["BTC-USD", "ETH-USD"]
 REDIS_URL = os.getenv("REDIS_URL", "redis://127.0.0.1:6380")
 
