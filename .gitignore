@@ -37,3 +37,28 @@ redis-only.yml
 multi_source_patch.diff
 tick_hub.py
 # …etc.
+
+# ── Secrets (NEVER commit these) ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Runtime data (should not be in git) ───────────────────────────────────────
+data_cache/
+data/redis/
+*.aof
+*.rdb
+dump.rdb
+
+# ── Python build artifacts ─────────────────────────────────────────────────────
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# ── Logs ───────────────────────────────────────────────────────────────────────
+*.log
+logs/
